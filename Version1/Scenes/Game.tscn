@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Script/Game.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/481680.jpg" type="Texture" id=2]
+[ext_resource path="res://Sprites/golf_PNG32 (1).png" type="Texture" id=3]
+[ext_resource path="res://Sprites/paddle.png" type="Texture" id=4]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 14.0201
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 5.51836, 50 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 105, 525 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 0, 1015, 0, 1015, 595, 0, 595, 0, 488.102, 0, 0 )
+texture_mode = -1084227586
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2( 490, 280 )
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_velocity = Vector2( 200, -200 )
+linear_damp = 0.0
+angular_damp = 0.0
+
+[node name="Sprite" type="Sprite" parent="Ball"]
+scale = Vector2( 0.04, 0.04 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( 0, 105, -35, 105, -35, -35, 1050, -35, 1050, 105, 1015, 105, 1015, 0, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
+polygon = PoolVector2Array( 0, 490, -35, 490, -35, 630, 1050, 630, 1050, 490, 1015, 490, 1015, 595, 0, 595 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PoolVector2Array( 1015, 105, 1015, 490 )
+default_color = Color( 1, 0.0352941, 0.0352941, 1 )
+texture_mode = -1084227586
+
+[node name="Line2D" type="Line2D" parent="Line2D2"]
+points = PoolVector2Array( 0, 105, 0, 490 )
+default_color = Color( 0.988235, 0, 0.0470588, 1 )
+texture_mode = -1084227586
+
+[node name="Player1" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 70, 280 )
+
+[node name="Sprite" type="Sprite" parent="Player1"]
+rotation = 1.5708
+scale = Vector2( 2.5, 3 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+visible = false
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player2" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 945, 280 )
+
+[node name="Sprite" type="Sprite" parent="Player2"]
+rotation = 1.5708
+scale = Vector2( 2.5, 3 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+visible = false
+shape = SubResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
